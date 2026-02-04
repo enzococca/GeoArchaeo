@@ -3,7 +3,7 @@ name=GeoArchaeo
 qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
 description=Advanced Geostatistical Analysis for Archaeological Research
-version=1.1.0
+version=1.1.1
 author=Enzo Cocca
 email=enzo.ccc@gmail.com
 
@@ -35,6 +35,8 @@ server=False
 
 ; Changelog
 changelog=
+    1.1.1 - Fixed tutorial text visibility on dark themes
+          - Fixed ML method mapping for English UI
     1.1.0 - Added Qt5/Qt6 compatibility for QGIS 4.x
           - Made QtWebEngine optional with browser fallback
           - Added English language support
