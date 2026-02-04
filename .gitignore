@@ -34,6 +34,5 @@ build/
 *.tmp
 *.temp
 
-# Test files
-test_layers/
+# Test project files
 *.qgz
