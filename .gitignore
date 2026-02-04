@@ -1,0 +1,39 @@
+# Claude AI
+.claude/
+CLAUDE.md
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# QGIS
+*.qgs~
+*.qgz~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Test files
+test_layers/
+*.qgz
