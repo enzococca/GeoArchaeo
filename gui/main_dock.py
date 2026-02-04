@@ -1065,6 +1065,12 @@ Interpretazione:
         
         # Prepara parametri
         method_map = {
+            # English keys
+            'K-Means (clustering)': 'kmeans',
+            'DBSCAN (density)': 'dbscan',
+            'Random Forest (classification)': 'random_forest',
+            'Isolation Forest (anomalies)': 'isolation_forest',
+            # Italian keys (for compatibility)
             'K-Means (raggruppamento)': 'kmeans',
             'DBSCAN (cluster densità)': 'dbscan',
             'Random Forest (classificazione)': 'random_forest',
