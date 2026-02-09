@@ -290,7 +290,7 @@ class GeoArchaeoDockWidget(QDockWidget):
     def _create_web_view(self):
         """Create web view widget with fallback for systems without QtWebEngine"""
         if WEBENGINE_AVAILABLE:
-            return self._create_web_view()
+            return QWebEngineView()
         else:
             # Fallback to QTextBrowser
             browser = QTextBrowser()
