@@ -17,11 +17,11 @@ about=Complete geostatistical toolkit for archaeology including:
     - Batch processing for large datasets
     - Integration with SpatiaLite
 
-tracker=https://github.com/enzococca/geoarchaeo/issues
-repository=https://github.com/enzococca/geoarchaeo
+tracker=https://github.com/enzococca/GeoArchaeo/issues
+repository=https://github.com/enzococca/GeoArchaeo
 tags=archaeology, geostatistics, kriging, machine learning, spatialite, interpolation, spatial analysis
 
-homepage=https://github.com/enzococca/geoarchaeo
+homepage=https://github.com/enzococca/GeoArchaeo
 category=Analysis
 icon=icons/geoarchaeo.png
 experimental=False
