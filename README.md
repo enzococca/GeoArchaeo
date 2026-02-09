@@ -3,44 +3,42 @@
 [![QGIS Version](https://img.shields.io/badge/QGIS-3.16%2B-green)](https://qgis.org)
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue)](https://python.org)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![GitHub issues](https://img.shields.io/github/issues/enzococca/geoarchaeo)](https://github.com/enzococca/geoarchaeo/issues)
+[![GitHub issues](https://img.shields.io/github/issues/enzococca/GeoArchaeo)](https://github.com/enzococca/GeoArchaeo/issues)
 
-**Sistema professionale di geostatistica per l'archeologia** - Plugin QGIS completo per analisi spaziale avanzata, kriging multivariabile, machine learning e ottimizzazione campionamenti archeologici.
+**Professional geostatistical system for archaeology** - A complete QGIS plugin for advanced spatial analysis, multivariate kriging, machine learning, and optimal sampling design for archaeological research.
 
-![GeoArchaeo Banner](https://via.placeholder.com/800x200/3498db/ffffff?text=GeoArchaeo+Plugin)
+## Key Features
 
-## 🎯 Features Principali
+### Geostatistical Analysis
+- **Automatic variograms** with anisotropy detection
+- **6 Kriging methods**: Ordinary, Universal, Co-Kriging, Regression, Indicator, Spatio-Temporal
+- **Automatic cross-validation** (LOO, k-fold)
+- **Batch processing** for datasets > 100k points
 
-### 📊 Analisi Geostatistica
-- **Variogrammi** automatici con detection anisotropia
-- **6 metodi di Kriging**: Ordinary, Universal, Co-Kriging, Regression, Indicator, Spazio-Temporale
-- **Cross-validation** automatica (LOO, k-fold)
-- **Batch processing** per dataset > 100k punti
+### Machine Learning
+- **Automatic pattern recognition** for archaeological structures
+- **Spatial clustering** (K-Means, DBSCAN)
+- **Anomaly detection** with Isolation Forest
+- **Random Forest** predictions
 
-### 🤖 Machine Learning
-- **Pattern Recognition** automatico per strutture archeologiche
-- **Clustering** spaziale (K-Means, DBSCAN)
-- **Anomaly Detection** con Isolation Forest
-- **Random Forest** per predizioni
+### GIS Integration
+- **Native QGIS Processing Provider**
+- **SpatiaLite** data management
+- **GeoTIFF export** for publications
+- **Interactive charts** with Plotly
 
-### 🗺️ Integrazione GIS
-- **Processing Provider** nativo QGIS
-- **SpatiaLite** per gestione dati
-- **Export GeoTIFF** per pubblicazioni
-- **Grafici interattivi** con Plotly
+### Archaeology-Specific
+- **Ceramic analysis** and artifact distribution
+- **GPR + Magnetometry fusion**
+- **Compositional soil analysis** (CLR/ILR transforms)
+- **Optimal sampling design**
 
-### 🏛️ Specifico per Archeologia
-- **Analisi ceramica** e distribuzione reperti
-- **Fusione GPR + Magnetometria**
-- **Analisi composizionale** terreni (CLR/ILR)
-- **Design campionamento** ottimale
+## Installation
 
-## 📦 Installazione
-
-### Prerequisiti
+### Prerequisites
 
 ```bash
-# Dipendenze Python
+# Python dependencies
 pip install numpy scipy pandas scikit-learn plotly
 
 # SpatiaLite (Ubuntu/Debian)
@@ -50,178 +48,157 @@ sudo apt-get install libspatialite-dev spatialite-bin
 brew install spatialite-tools
 
 # SpatiaLite (Windows)
-# Incluso in OSGeo4W
+# Included in OSGeo4W
 ```
 
-### Metodo 1: Da ZIP (Raccomandato)
+### Method 1: From ZIP (Recommended)
 
-1. Scarica l'ultima release: [Download GeoArchaeo.zip](https://github.com/enzococca/geoarchaeo/releases/latest)
-2. In QGIS: `Plugins → Manage and Install Plugins → Install from ZIP`
-3. Seleziona il file ZIP scaricato
-4. Riavvia QGIS
+1. Download the latest release: [Download GeoArchaeo.zip](https://github.com/enzococca/GeoArchaeo/releases/latest)
+2. In QGIS: `Plugins > Manage and Install Plugins > Install from ZIP`
+3. Select the downloaded ZIP file
+4. Restart QGIS
 
-### Metodo 2: Da Repository
+### Method 2: From Repository
 
 ```bash
 # Linux/macOS
 cd ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
-git clone https://github.com/enzococca/geoarchaeo.git
+git clone https://github.com/enzococca/GeoArchaeo.git
 
 # Windows
 cd %APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\
-git clone https://github.com/enzococca/geoarchaeo.git
+git clone https://github.com/enzococca/GeoArchaeo.git
 ```
 
-### Metodo 3: Plugin Manager (Coming Soon)
+### Method 3: QGIS Plugin Manager
 
-Il plugin sarà disponibile nel QGIS Plugin Repository ufficiale.
+The plugin is available in the official QGIS Plugin Repository.
 
-## 🚀 Quick Start
+## Quick Start
 
-### 1. Prima Analisi in 5 Minuti
+### 1. First Analysis in 5 Minutes
 
 ```python
-# 1. Apri QGIS e attiva GeoArchaeo
-# 2. Carica i tuoi dati puntuali (CSV, SHP, etc.)
-# 3. Click sull'icona GeoArchaeo nella toolbar
-# 4. Nel pannello:
-#    - Tab "Dati" → Seleziona layer e campo
-#    - Tab "Variogramma" → Click "Calcola"
-#    - Tab "Kriging" → Click "Esegui"
-# 5. Risultato: mappa interpolata professionale!
+# 1. Open QGIS and activate GeoArchaeo
+# 2. Load your point data (CSV, SHP, etc.)
+# 3. Click the GeoArchaeo icon in the toolbar
+# 4. In the panel:
+#    - "Data" tab -> Select layer and field
+#    - "Variogram" tab -> Click "Calculate"
+#    - "Kriging" tab -> Click "Run"
+# 5. Result: a professional interpolated map!
 ```
 
-### 2. Esempio Python Console
+### 2. Python Console Example
 
 ```python
 import processing
 
-# Variogramma
+# Variogram
 result = processing.run("geoarchaeo:variogram", {
     'INPUT': 'path/to/points.shp',
-    'FIELD': 'ceramica_count',
+    'FIELD': 'ceramic_count',
     'MAX_DISTANCE': 50,
-    'MODEL': 0  # Sferico
+    'MODEL': 0  # Spherical
 })
 
 # Ordinary Kriging
 kriging = processing.run("geoarchaeo:ordinarykriging", {
     'INPUT': 'path/to/points.shp',
-    'FIELD': 'ceramica_count',
+    'FIELD': 'ceramic_count',
     'PIXEL_SIZE': 2.0,
     'OUTPUT': 'kriging_result.tif'
 })
 ```
 
-## 📖 Documentazione
+## Documentation
 
-### Struttura Dati Archeologici
+### Archaeological Data Format
 
-#### Formato CSV Minimo
+#### Minimum CSV Format
 ```csv
-id,x,y,tipo,quantita,periodo
-1,345678.5,4567890.2,ceramica,25,romano
-2,345679.1,4567891.7,metallo,5,romano
+id,x,y,type,quantity,period
+1,345678.5,4567890.2,ceramic,25,roman
+2,345679.1,4567891.7,metal,5,roman
 ```
 
-**Requisiti:**
-- Coordinate in sistema proiettato (es. UTM)
-- Almeno un campo numerico per interpolazione
-- Minimo 30 punti per analisi robusta
+**Requirements:**
+- Coordinates in a projected CRS (e.g. UTM)
+- At least one numeric field for interpolation
+- Minimum 30 points for robust analysis
 
-### Workflow Tipico
+### Typical Workflow
 
 ```mermaid
 graph LR
-    A[Import Dati] --> B[Check Qualità]
-    B --> C[Variogramma]
+    A[Import Data] --> B[Quality Check]
+    B --> C[Variogram]
     C --> D[Kriging]
-    D --> E[Validazione]
-    E --> F[Export Mappe]
+    D --> E[Validation]
+    E --> F[Export Maps]
 ```
 
-### Casi d'Uso
+### Use Cases
 
-#### 🏺 Analisi Densità Ceramica
-Identifica aree funzionali (cucine, magazzini) basandosi sulla distribuzione dei frammenti.
+#### Ceramic Density Analysis
+Identify functional areas (kitchens, storage rooms) based on fragment distribution.
 
-#### 📡 Fusione Dati Geofisici
-Combina GPR + Magnetometria per identificazione strutture sepolte.
+#### Geophysical Data Fusion
+Combine GPR + Magnetometry to identify buried structures.
 
-#### 🧪 Analisi Composizionale
-Trasformazioni CLR/ILR per dati granulometrici e chimici del terreno.
+#### Compositional Analysis
+CLR/ILR transforms for granulometric and chemical soil data.
 
-#### 🎯 Ottimizzazione Scavi
-Calcola posizioni ottimali per nuovi saggi minimizzando l'incertezza.
+#### Excavation Optimization
+Calculate optimal positions for new test trenches by minimizing uncertainty.
 
-## 🖼️ Screenshots
+## Sample Datasets
 
-### Interfaccia Principale
-![Main Interface](https://via.placeholder.com/600x400/2ecc71/ffffff?text=Dock+Widget+Interface)
+The repository includes sample datasets for testing:
 
-### Variogramma Interattivo
-![Variogram](https://via.placeholder.com/600x400/3498db/ffffff?text=Interactive+Variogram)
-
-### Risultati Kriging
-![Kriging Results](https://via.placeholder.com/600x400/e74c3c/ffffff?text=Kriging+Maps)
-
-## 📊 Dataset di Esempio
-
-Il repository include dataset di esempio per testing:
-
-```bash
-examples/
-├── villa_ceramica.csv      # 500 punti densità ceramica
-├── necropoli.csv           # 150 tombe con attributi
-├── geofisica_grid.csv      # Griglia GPR+MAG 0.5m
-└── tutorial_project.qgz    # Progetto QGIS completo
+```
+test_layers/
+├── villa_ceramica.csv        # 500 points - ceramic distribution
+├── necropoli.csv             # 120 tombs with attributes
+├── geofisica_survey.csv      # Geophysical survey grid
+├── soil_samples.csv          # 80 points - compositional analysis
+└── ricognizione_survey.csv   # Field survey data
 ```
 
-## 🛠️ Sviluppo
+## Development
 
-### Struttura del Progetto
+### Project Structure
 
 ```
 geoarchaeo/
 ├── __init__.py                 # Entry point
-├── geoarchaeo_plugin.py        # Plugin principale
-├── processing_provider.py      # Algoritmi Processing
+├── geoarchaeo_plugin.py        # Main plugin class
+├── processing_provider.py      # Processing algorithms
+├── compat.py                   # Qt5/Qt6 compatibility
+├── i18n.py                     # Internationalization (IT/EN)
 ├── core/
-│   ├── geostat_engine.py      # Motore geostatistico
-│   ├── kriging.py             # Implementazioni kriging
-│   └── ml_analysis.py         # Machine Learning
+│   └── geostat_engine.py       # Geostatistical engine
 ├── gui/
-│   ├── main_dock.py           # Interfaccia dock
-│   └── dialogs/               # Dialoghi custom
-├── algorithms/                 # Algoritmi Processing
-├── icons/                      # Icone e risorse
-├── tests/                      # Unit tests
-└── metadata.txt               # Metadata QGIS
+│   └── main_dock.py            # Dock widget interface
+├── icons/                      # Icons and resources
+├── doc/                        # Documentation
+├── test_layers/                # Sample datasets
+└── metadata.txt                # QGIS metadata
 ```
 
-### Contribuire
+### Contributing
 
-Contribuzioni benvenute! Per contribuire:
+Contributions are welcome! To contribute:
 
-1. Fork il repository
-2. Crea un branch (`git checkout -b feature/AmazingFeature`)
-3. Commit le modifiche (`git commit -m 'Add AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+1. Fork the repository
+2. Create a branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Testing
+## Citation
 
-```bash
-# Run unit tests
-python -m pytest tests/
-
-# Test in QGIS
-python tests/test_in_qgis.py
-```
-
-## 📝 Pubblicazioni e Citazioni
-
-Se usi GeoArchaeo per ricerca, per favore cita:
+If you use GeoArchaeo in your research, please cite:
 
 ```bibtex
 @software{geoarchaeo2024,
@@ -229,60 +206,48 @@ Se usi GeoArchaeo per ricerca, per favore cita:
   title = {GeoArchaeo: Advanced Geostatistical Analysis for Archaeological Research},
   year = {2024},
   publisher = {GitHub},
-  url = {https://github.com/enzococca/geoarchaeo}
+  url = {https://github.com/enzococca/GeoArchaeo}
 }
 ```
 
-### Articoli che usano GeoArchaeo
+## Support
 
-- *Coming soon*
+- **Bug reports**: [Open an issue](https://github.com/enzococca/GeoArchaeo/issues/new)
+- **Email**: [enzo.ccc@gmail.com](mailto:enzo.ccc@gmail.com)
 
-## 🤝 Supporto
+## License
 
-### Documentazione Completa
-[Leggi la documentazione completa](docs/DOCUMENTATION.md) (60+ pagine con esempi e tutorial)
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE) file for details.
 
-### Segnalazione Bug
-[Apri una issue](https://github.com/enzococca/geoarchaeo/issues/new) per segnalare problemi
+## Acknowledgements
 
-### Domande e Supporto
-📧 **Email**: [enzo.ccc@gmail.com](mailto:enzo.ccc@gmail.com)
+- **QGIS Development Team** for the excellent platform
+- **Archaeological community** for feedback and testing
 
-## 📜 Licenza
+## Project Status
 
-Questo progetto è distribuito sotto licenza **GNU General Public License v3.0** - vedi il file [LICENSE](LICENSE) per dettagli.
+- [x] Complete geostatistical core
+- [x] Processing integration
+- [x] Basic Machine Learning
+- [x] Full documentation
+- [x] Plugin in official QGIS repository
+- [ ] Multilingual GUI (IT/EN/ES/FR)
+- [ ] Video tutorials
+- [ ] Online workshops
 
-## 🙏 Ringraziamenti
+## Useful Links
 
-- **QGIS Development Team** per l'eccellente piattaforma
-- **Comunità archeologica** per feedback e testing
-- **Contributors** per miglioramenti e correzioni
-
-## 📊 Stato del Progetto
-
-- [x] Core geostatistico completo
-- [x] Integrazione Processing
-- [x] Machine Learning base
-- [x] Documentazione completa
-- [ ] Plugin nel repository QGIS ufficiale
-- [ ] GUI multilingua (IT/EN/ES/FR)
-- [ ] Video tutorial
-- [ ] Workshop online
-
-## 🔗 Link Utili
-
-- **Repository**: [github.com/enzococca/geoarchaeo](https://github.com/enzococca/geoarchaeo)
-- **Issues**: [Bug Reports](https://github.com/enzococca/geoarchaeo/issues)
+- **Repository**: [github.com/enzococca/GeoArchaeo](https://github.com/enzococca/GeoArchaeo)
+- **Issues**: [Bug Reports](https://github.com/enzococca/GeoArchaeo/issues)
 - **QGIS**: [qgis.org](https://qgis.org)
-- **Python Geostatistics**: [scikit-gstat](https://github.com/mmaelicke/scikit-gstat)
 
 ---
 
 <div align="center">
-  
-**Sviluppato con ❤️ per la comunità archeologica da [Enzo Cocca](mailto:enzo.ccc@gmail.com)**
+
+**Developed for the archaeological community by [Enzo Cocca](mailto:enzo.ccc@gmail.com)**
 
 [![GitHub followers](https://img.shields.io/github/followers/enzococca?style=social)](https://github.com/enzococca)
-[![GitHub stars](https://img.shields.io/github/stars/enzococca/geoarchaeo?style=social)](https://github.com/enzococca/geoarchaeo)
+[![GitHub stars](https://img.shields.io/github/stars/enzococca/GeoArchaeo?style=social)](https://github.com/enzococca/GeoArchaeo)
 
 </div>
