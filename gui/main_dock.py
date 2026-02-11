@@ -818,7 +818,6 @@ Interpretazione:
             os.chmod(html_file.name, 0o644)
             
             # Mostra in webview o apri nel browser
-            import webbrowser
             if WEBENGINE_AVAILABLE:
                 try:
                     url = QUrl.fromLocalFile(html_file.name)
@@ -827,14 +826,13 @@ Interpretazione:
                     with open(html_file.name, 'r') as f:
                         self.variogram_view.setHtml(f.read())
             else:
-                # Senza WebEngine, mostra messaggio e apri nel browser
+                # Senza WebEngine, apri nel browser esterno
+                import webbrowser
                 self.variogram_view.setHtml(
                     "<h3>Variogramma calcolato!</h3>"
                     "<p>Il grafico interattivo è stato aperto nel browser.</p>"
                 )
-
-            # Apri sempre nel browser per visualizzazione interattiva
-            webbrowser.open(f'file://{html_file.name}')
+                webbrowser.open(f'file://{html_file.name}')
             
             # Mostra parametri stimati
             model_params = result.get('model_params', {})
@@ -844,7 +842,10 @@ Interpretazione:
             msg += f"- Sill: {model_params.get('sill', 0):.3f}\n"
             msg += f"- Range: {model_params.get('range', 0):.1f} m\n"
             msg += f"- RMSE fit: {result.get('rmse', 0):.3f}\n\n"
-            msg += f"Il grafico è stato aperto nel browser."
+            if WEBENGINE_AVAILABLE:
+                msg += f"Il grafico interattivo è visibile nel pannello."
+            else:
+                msg += f"Il grafico è stato aperto nel browser."
             
             QMessageBox.information(self, tr('completed'), msg)
             
@@ -965,7 +966,6 @@ Interpretazione:
                 os.chmod(html_file.name, 0o644)
 
                 # Mostra in webview o apri nel browser
-                import webbrowser
                 if WEBENGINE_AVAILABLE:
                     try:
                         url = QUrl.fromLocalFile(html_file.name)
@@ -976,12 +976,13 @@ Interpretazione:
                             "<p>Interactive graph opened in browser.</p>"
                         )
                 else:
+                    # Senza WebEngine, apri nel browser esterno
+                    import webbrowser
                     self.kriging_view.setHtml(
                         "<h3>Kriging Complete!</h3>"
                         "<p>Interactive graph opened in browser.</p>"
                     )
-
-                webbrowser.open(f'file://{html_file.name}')
+                    webbrowser.open(f'file://{html_file.name}')
 
             except Exception as viz_error:
                 QgsMessageLog.logMessage(
@@ -1115,7 +1116,6 @@ Interpretazione:
             os.chmod(html_file.name, 0o644)
             
             # Mostra in webview o apri nel browser
-            import webbrowser
             if WEBENGINE_AVAILABLE:
                 try:
                     url = QUrl.fromLocalFile(html_file.name)
@@ -1124,12 +1124,13 @@ Interpretazione:
                     with open(html_file.name, 'r') as f:
                         self.ml_view.setHtml(f.read())
             else:
+                # Senza WebEngine, apri nel browser esterno
+                import webbrowser
                 self.ml_view.setHtml(
                     "<h3>Pattern Recognition Complete!</h3>"
                     "<p>Interactive graph opened in browser.</p>"
                 )
-
-            webbrowser.open(f'file://{html_file.name}')
+                webbrowser.open(f'file://{html_file.name}')
 
             # Crea layer con i cluster
             self._create_ml_layer(result)
