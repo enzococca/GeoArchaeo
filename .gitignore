@@ -36,3 +36,8 @@ build/
 
 # Test project files
 *.qgz
+
+# Test / runtime artefacts
+.pytest_cache/
+*.gpkg-wal
+*.gpkg-shm
